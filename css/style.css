@@ -1,0 +1,406 @@
+:root {
+    --primary:      #6b21a8;
+    --primary-soft: #a78bfa;
+    --accent:       #3b82f6;
+    --dark:         #1e3a8a;
+    --bg:           #f8f7fc;
+    --text:         #1e1b4b;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body:    'Poppins', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--font-heading); color: var(--primary); }
+
+img { display: block; max-width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-list a {
+    color: white;
+    padding: 0.3rem 0;
+    transition: color 0.2s;
+}
+
+.nav-list a:hover,
+.nav-list a:focus,
+.nav-list a.active {
+    color: var(--primary-soft);
+    outline: none;
+}
+
+.hero {
+    position: relative;
+    height: 80vh;
+    background: url('../images/hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 27, 75, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary-custom {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary-custom:hover,
+.btn-primary-custom:focus {
+    background: var(--primary);
+    color: white;
+    outline: none;
+}
+
+.section-title {
+    text-align: center;
+    margin: 3rem 0 2rem;
+}
+
+.section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+.section-title p  { color: #6b7280; }
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    padding: 0 2rem 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img { transform: scale(1.05); }
+
+.gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.8rem 1rem;
+    background: rgba(30, 27, 75, 0.75);
+    color: white;
+    font-weight: 500;
+}
+
+.gallery-item:nth-child(odd)  { border-top: 3px solid var(--primary); }
+.gallery-item:nth-child(even) { border-top: 3px solid var(--accent); }
+
+.pricing-table,
+.timeline-table {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pricing-table th,
+.timeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+.pricing-table td,
+.timeline-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pricing-table tbody tr:nth-child(even),
+.timeline-table tbody tr:nth-child(even) {
+    background: #ede9fe;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--primary);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.about-intro-text {
+    max-width: 750px;
+    margin: 0 auto;
+    color: #4b5563;
+}
+
+.about-hero {
+    position: relative;
+    padding: 5rem 2rem;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+}
+
+.about-hero-content h1 {
+    color: white;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-hero-content p {
+    color: var(--primary-soft);
+    font-size: 1.05rem;
+}
+
+.bio-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2.5rem;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.bio-wrapper.reverse {
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.bio-wrapper.reverse .bio-photo {
+    order: 2;
+}
+
+.bio-wrapper.reverse .bio-text {
+    order: 1;
+}
+
+.bio-photo img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.bio-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.bio-text p {
+    color: #4b5563;
+}
+
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 3rem 2rem;
+    background: var(--dark);
+    color: white;
+    text-align: center;
+}
+
+.stat h3 {
+    color: var(--primary-soft);
+    font-size: 2.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat p {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2.5rem 2rem 1.5rem;
+    background: var(--primary);
+    color: white;
+}
+
+.footer h4 {
+    color: var(--primary-soft);
+    margin-bottom: 0.6rem;
+}
+
+.footer a { color: white; }
+.footer a:hover { color: var(--primary-soft); }
+
+.social-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.copyright {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .site-header { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .nav-list { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .hero-content h1 { font-size: 2rem; }
+    .gallery { grid-template-columns: repeat(2, 1fr); padding: 0 1rem 2rem; }
+    .site-footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+
+    .about-hero { padding: 3.5rem 1.5rem; }
+    .about-hero-content h1 { font-size: 2.2rem; }
+
+    .bio-wrapper,
+    .bio-wrapper.reverse {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .bio-wrapper.reverse .bio-photo,
+    .bio-wrapper.reverse .bio-text {
+        order: 0;
+    }
+    .bio-photo img { height: 280px; }
+
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .nav-list { flex-direction: column; align-items: center; gap: 0.5rem; }
+    .hero { height: 70vh; }
+    .hero-content h1 { font-size: 1.6rem; }
+    .gallery { grid-template-columns: 1fr; }
+    .site-footer { grid-template-columns: 1fr; text-align: center; }
+    .pricing-table { width: 100%; font-size: 0.9rem; }
+
+    .about-hero { padding: 2.5rem 1rem; }
+    .about-hero-content h1 { font-size: 1.8rem; }
+
+    .bio-wrapper,
+    .bio-wrapper.reverse {
+        padding: 1.25rem;
+    }
+    .bio-photo img { height: 220px; }
+    .bio-text h2 { font-size: 1.4rem; }
+
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat h3 { font-size: 1.8rem; }
+}
