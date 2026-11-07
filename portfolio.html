@@ -32,6 +32,18 @@
             <p>Browse work by category</p>
         </div>
 
+        <div class="portfolio-controls">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search photos…" />
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="portrait">Portrait</button>
+                <button class="filter-btn" data-category="wedding">Wedding</button>
+                <button class="filter-btn" data-category="nature">Nature</button>
+            </div>
+        </div>
+
+        <p id="noResults" class="text-center text-muted" style="display:none;">No photos match.</p>
+
         <div class="gallery" id="portfolioGallery">
             <div class="gallery-item" data-category="portrait" data-title="Portrait 1">
                 <img src="images/portrait1.jpg" alt="Portrait 1" loading="lazy" />
