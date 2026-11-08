@@ -82,5 +82,3 @@ pricing, and gives visitors an easy way to book a session.
 - Layout structure, footer, and overall design decisions
 - Testing on different screen sizes
 - Debugging and final polish
-
----
