@@ -21,6 +21,7 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="services.html" class="active">Service</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
             </ul>
         </nav>
     </header>
@@ -31,47 +32,61 @@
             <p>Choose the package that fits your story</p>
         </div>
 
-        <table class="pricing-table">
-            <thead>
-                <tr>
-                    <th>Package</th>
-                    <th>Duration</th>
-                    <th>Photos</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Mini Session</td>
-                    <td> 30 min</td>
-                    <td>10 edited photos</td>
-                    <td>$80</td>
-                </tr>
-                <tr>
-                    <td>Standard Portrait</td>
-                    <td> 1 hour</td>
-                    <td>25 edited photos</td>
-                    <td>$150</td>
-                </tr>
-                <tr>
-                    <td>Wedding Full Day</td>
-                    <td>8 hours</td>
-                    <td>300+ edited photos</td>
-                    <td>$1.200</td>
-                </tr>
-                <tr>
-                    <td>Event Coverage</td>
-                    <td>4 hours</td>
-                    <td>150 edited photos</td>
-                    <td>$650</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container" style="max-width: 900px; padding: 0 1rem 3rem;">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn-primary-custom" id="addPackageBtn">+ Add Package</button>
+            </div>
+
+            <table class="pricing-table w-100">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Duration</th>
+                        <th>Photos</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="packagesBody"></tbody>
+            </table>
+
+            <p id="emptyRowMsg" class="text-center text-muted" style="display:none;">
+                No packages yet. Click "Add Package".
+            </p>
+        </div>
+
+        <div class="modal fade" id="packageModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="packageForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="packageModalTitle">Add Package</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="packageId" />
+                            <label for="pkgName">Package Name</label>
+                            <input type="text" id="pkgName" required placeholder="e.g. Mini Session" />
+                            <label for="pkgDuration">Duration</label>
+                            <input type="text" id="pkgDuration" required placeholder="e.g. 1 hour" />
+                            <label for="pkgPhotos">Photos</label>
+                            <input type="text" id="pkgPhotos" required placeholder="e.g. 25 edited photos" />
+                            <label for="pkgPrice">Price</label>
+                            <input type="text" id="pkgPrice" required placeholder="e.g. $150" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn-primary-custom">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
         <div>
-            <h4> Lens &amp; Light</h4>
+            <h4>Lens &amp; Light</h4>
             <p>Capturing moments that last forever.</p>
         </div>
         <div>
@@ -90,6 +105,8 @@
         <p class="copyright">&copy; 2026 Lens &amp; Light. All rights reserved.</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

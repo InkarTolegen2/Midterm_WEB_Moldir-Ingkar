@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  // 2.1 Form valiidation (Moldir)
+  // 2.1 Form validion (Moldir)
   if ($('#registerForm').length) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -95,11 +95,129 @@ $(document).ready(function () {
     });
   }
 
-  // 2.2 Dynamic Search & Filter Functionality (Ingkar)
+  // 2.2 Search & Filter (Ingkar)
+  if ($('#portfolioGallery').length) {
 
-  // 2.3 Dynamic Table with CRUD Operations (Ingkar)
+    let activeCat = 'all';
 
-  // 2.4 Image Gallery  (Moldir)
+    function filter() {
+      const q = $('#searchInput').val().toLowerCase().trim();
+      let shown = 0;
+
+      $('#portfolioGallery .gallery-item').each(function () {
+        const $i = $(this);
+        const title = ('' + $i.data('title')).toLowerCase();
+        const cat = ('' + $i.data('category')).toLowerCase();
+
+        const matchText = title.indexOf(q) !== -1;
+        const matchCat = activeCat === 'all' || cat === activeCat;
+
+        if (matchText && matchCat) { $i.show(); shown++; }
+        else { $i.hide(); }
+      });
+
+      $('#noResults').toggle(shown === 0);
+    }
+
+    $('#searchInput').on('input', filter);
+
+    $('.filter-btn').on('click', function () {
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+      activeCat = $(this).data('category');
+      filter();
+    });
+  }
+
+  // 2.3 Crud table (Ingkar)
+  if ($('#packagesBody').length) {
+
+    let packages = [
+      { id: 1, name: 'Mini Session',      duration: '30 min',  photos: '10 edited photos',   price: '$80' },
+      { id: 2, name: 'Standard Portrait', duration: '1 hour',  photos: '25 edited photos',   price: '$150' },
+      { id: 3, name: 'Wedding Full Day',  duration: '8 hours', photos: '300+ edited photos', price: '$1.200' },
+      { id: 4, name: 'Event Coverage',    duration: '4 hours', photos: '150 edited photos',  price: '$650' }
+    ];
+    let nextId = 5;
+    const modal = new bootstrap.Modal(document.getElementById('packageModal'));
+
+    function esc(s) { return $('<div>').text(s).html(); }
+
+    function render() {
+      const $body = $('#packagesBody').empty();
+      $('#emptyRowMsg').toggle(packages.length === 0);
+
+      packages.forEach(function (p) {
+        $body.append(
+          '<tr>' +
+            '<td>' + esc(p.name) + '</td>' +
+            '<td>' + esc(p.duration) + '</td>' +
+            '<td>' + esc(p.photos) + '</td>' +
+            '<td>' + esc(p.price) + '</td>' +
+            '<td class="crud-actions">' +
+              '<button class="btn-edit" data-id="' + p.id + '">Edit</button> ' +
+              '<button class="btn-delete" data-id="' + p.id + '">Delete</button>' +
+            '</td>' +
+          '</tr>'
+        );
+      });
+    }
+
+    $('#addPackageBtn').on('click', function () {
+      $('#packageForm')[0].reset();
+      $('#packageId').val('');
+      $('#packageModalTitle').text('Add Package');
+      modal.show();
+    });
+
+    $('#packagesBody').on('click', '.btn-edit', function () {
+      const id = parseInt($(this).data('id'), 10);
+      const p = packages.find(function (x) { return x.id === id; });
+      if (!p) return;
+      $('#packageId').val(p.id);
+      $('#pkgName').val(p.name);
+      $('#pkgDuration').val(p.duration);
+      $('#pkgPhotos').val(p.photos);
+      $('#pkgPrice').val(p.price);
+      $('#packageModalTitle').text('Edit Package');
+      modal.show();
+    });
+
+    $('#packagesBody').on('click', '.btn-delete', function () {
+      const id = parseInt($(this).data('id'), 10);
+      const p = packages.find(function (x) { return x.id === id; });
+      if (!p) return;
+      if (!confirm('Delete "' + p.name + '"? This cannot be undone.')) return;
+      packages = packages.filter(function (x) { return x.id !== id; });
+      render();
+    });
+
+    $('#packageForm').on('submit', function (e) {
+      e.preventDefault();
+      const id = $('#packageId').val();
+      const data = {
+        name:     $('#pkgName').val().trim(),
+        duration: $('#pkgDuration').val().trim(),
+        photos:   $('#pkgPhotos').val().trim(),
+        price:    $('#pkgPrice').val().trim()
+      };
+      if (!data.name || !data.duration || !data.photos || !data.price) return;
+
+      if (id) {
+        const n = parseInt(id, 10);
+        const i = packages.findIndex(function (x) { return x.id === n; });
+        if (i !== -1) packages[i] = Object.assign({ id: n }, data);
+      } else {
+        packages.push(Object.assign({ id: nextId++ }, data));
+      }
+      render();
+      modal.hide();
+    });
+
+    render();
+  }
+
+  // 2.4 Image Gallery (Moldir)
   if ($('#lightbox').length) {
 
     const $lb = $('#lightbox');
