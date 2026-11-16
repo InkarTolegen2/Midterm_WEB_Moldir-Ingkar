@@ -110,3 +110,20 @@ Endterm:
 - Layout structure, footer, and overall design decisions
 - Testing on different screen sizes
 - Debugging and final polish
+
+---
+
+## Final Project Additions
+
+### Sign-In with localStorage (Ingkar)
+- `signin.html` with name/email validation
+- Signed-in state saved in `localStorage` (non-sensitive: name + email)
+- Displays "signed in as [name]" and a Sign Out button
+- Sign Out clears localStorage and restores the form
+
+### Openverse API Integration (Ingkar)
+- `gallery.html` fetches openly-licensed images from `https://api.openverse.org/v1/images/`
+- Search input + Search / Refresh buttons
+- Displays image title, creator, license, and original link dynamically
+- Error handling for failed requests and empty results
+- Anonymous API access (no key required, rate limit: 1 req/sec)
