@@ -302,4 +302,76 @@ $(document).ready(function () {
       $('#signinEmail').val('');
     });
   }
+
+  // Openverse API search (Ingkar)
+  if ($('#apiResults').length) {
+    var OPENVERSE_BASE = 'https://api.openverse.org/v1/images/';
+    var lastQuery = '';
+
+    function escapeHtml(s) { return $('<div>').text(s).html(); }
+
+    function renderApiResults(data) {
+      var $container = $('#apiResults').empty();
+      if (!data.results || data.results.length === 0) {
+        $('#apiStatus').text('No images found. Try another search.').show();
+        return;
+      }
+      $('#apiStatus').hide();
+      data.results.forEach(function (img) {
+        var title = img.title || 'Untitled';
+        var creator = img.creator || 'Unknown';
+        var license = (img.license || '').toUpperCase();
+        var foreignUrl = img.foreign_landing_url || '#';
+        $container.append(
+          '<div class="gallery-item" style="cursor:default;">' +
+            '<div style="padding:1rem; background:#f3f4f6; min-height:120px;">' +
+              '<h6 style="margin:0 0 0.5rem; font-size:0.95rem; color:var(--primary);">' + escapeHtml(title) + '</h6>' +
+              '<p style="font-size:0.8rem; margin:0 0 0.25rem; color:#6b7280;">By: ' + escapeHtml(creator) + '</p>' +
+              '<p style="font-size:0.8rem; margin:0;">License: ' + escapeHtml(license) + '</p>' +
+              '<a href="' + foreignUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem; color:var(--accent);">View original →</a>' +
+            '</div>' +
+          '</div>'
+        );
+      });
+    }
+
+    function fetchOpenverse(query) {
+      $('#apiStatus').text('Loading…').show();
+      $('#apiResults').empty();
+      var url = OPENVERSE_BASE + '?q=' + encodeURIComponent(query) + '&page_size=20';
+      fetch(url)
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          lastQuery = query;
+          renderApiResults(data);
+        })
+        .catch(function (err) {
+          $('#apiStatus').text('Failed to load images. Check your connection and try again.').show();
+          console.error('Openverse error:', err);
+        });
+    }
+
+    $('#apiSearchBtn').on('click', function () {
+      var q = $('#apiSearchInput').val().trim();
+      if (q) fetchOpenverse(q);
+    });
+
+    $('#apiSearchInput').on('keypress', function (e) {
+      if (e.which === 13) {
+        e.preventDefault();
+        var q = $(this).val().trim();
+        if (q) fetchOpenverse(q);
+      }
+    });
+
+    $('#apiRefreshBtn').on('click', function () {
+      fetchOpenverse(lastQuery || 'photography');
+    });
+
+    fetchOpenverse('photography');
+  }
+  
 });
