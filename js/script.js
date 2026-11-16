@@ -11,7 +11,7 @@ $(document).ready(function () {
     }
 
     function validateName() {
-      const v = $('#regName').val().trim();
+      const v = $('#regName').val().trim();  
       const $f = $('#nameFeedback');
       if (v === '') return setFeedback($f, 'Name is required', false);
       if (v.length < 2) return setFeedback($f, 'Too short (min 2 characters)', false);
@@ -268,4 +268,38 @@ $(document).ready(function () {
     });
   }
 
+    // Sign-in (Ingkar)
+  if ($('#signinForm').length) {
+    var savedUser = localStorage.getItem('signedInUser');
+    if (savedUser) {
+      var user = JSON.parse(savedUser);
+      $('#signinForm').hide();
+      $('#signedInView').show();
+      $('#userDisplayName').text(user.name);
+    }
+
+    $('#signinForm').on('submit', function (e) {
+      e.preventDefault();
+      var name = $('#signinName').val().trim();
+      var email = $('#signinEmail').val().trim();
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (name.length < 2 || !emailOk) {
+        $('#signinAlert').html('<div class="alert alert-danger">Please enter a valid name and email.</div>');
+        return;
+      }
+      localStorage.setItem('signedInUser', JSON.stringify({ name: name, email: email }));
+      $('#signinForm').hide();
+      $('#signedInView').show();
+      $('#userDisplayName').text(name);
+      $('#signinAlert').html('');
+    });
+
+    $('#signOutBtn').on('click', function () {
+      localStorage.removeItem('signedInUser');
+      $('#signedInView').hide();
+      $('#signinForm').show();
+      $('#signinName').val('');
+      $('#signinEmail').val('');
+    });
+  }
 });
