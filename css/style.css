@@ -638,3 +638,17 @@ body.dark-mode .faq-answer { color: #d1d5db; border-color: #3b3552; }
     transition: border-color 0.2s, transform 0.2s;
 }
 .theme-toggle-btn:hover { border-color: var(--primary-soft); transform: scale(1.1); }
+
+.api-card-content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+}
+body.dark-mode .api-card-content {
+    background: #2d2640;
+    border-color: #3b3552;
+}
+body.dark-mode .api-text {
+    color: #cbd5e1 !important;
+}

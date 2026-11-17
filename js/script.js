@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
   // Endterm
-  // 2.1 Form validion (Moldir)
-    if ($('#registerForm').length) {
+  // 2.1 Form validation (Moldir)
+  if ($('#registerForm').length) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -276,7 +276,7 @@ $(document).ready(function () {
     });
   }
 
-    // Sign-in (Ingkar)
+  // Sign-in (Ingkar)
   if ($('#signinForm').length) {
     var savedUser = localStorage.getItem('signedInUser');
     if (savedUser) {
@@ -288,26 +288,36 @@ $(document).ready(function () {
 
     $('#signinForm').on('submit', function (e) {
       e.preventDefault();
-      var name = $('#signinName').val().trim();
       var email = $('#signinEmail').val().trim();
-      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (name.length < 2 || !emailOk) {
-        $('#signinAlert').html('<div class="alert alert-danger">Please enter a valid name and email.</div>');
+      var password = $('#signinPassword').val(); 
+      var $alert = $('#signinAlert');
+
+      var registeredUserJSON = localStorage.getItem('registeredUser');
+      
+      if (!registeredUserJSON) {
+        $alert.html('<div class="alert alert-danger">No account found. Please <a href="register.html">Register</a> first.</div>');
         return;
       }
-      localStorage.setItem('signedInUser', JSON.stringify({ name: name, email: email }));
-      $('#signinForm').hide();
-      $('#signedInView').show();
-      $('#userDisplayName').text(name);
-      $('#signinAlert').html('');
+
+      var registeredUser = JSON.parse(registeredUserJSON);
+
+      if (email === registeredUser.email && password === registeredUser.password) {
+        localStorage.setItem('signedInUser', JSON.stringify({ name: registeredUser.name, email: registeredUser.email }));
+        $('#signinForm').hide();
+        $('#signedInView').show();
+        $('#userDisplayName').text(registeredUser.name);
+        $alert.html('');
+      } else {
+        $alert.html('<div class="alert alert-danger">Invalid email or password.</div>');
+      }
     });
 
     $('#signOutBtn').on('click', function () {
       localStorage.removeItem('signedInUser');
       $('#signedInView').hide();
       $('#signinForm').show();
-      $('#signinName').val('');
       $('#signinEmail').val('');
+      $('#signinPassword').val('');
     });
   }
 
@@ -319,7 +329,7 @@ $(document).ready(function () {
 
     function escapeHtml(s) { return $('<div>').text(s).html(); }
 
-    function renderApiResults(data) {
+        function renderApiResults(data) {
       var $container = $('#apiResults').empty();
       if (!data.results || data.results.length === 0) {
         $('#apiStatus').text('No images found. Try another search.').show();
@@ -331,13 +341,20 @@ $(document).ready(function () {
         var creator = img.creator || 'Unknown';
         var license = (img.license || '').toUpperCase();
         var foreignUrl = img.foreign_landing_url || '#';
+        
+        var imgUrl = img.url || img.thumbnail || 'https://via.placeholder.com/300x200?text=No+Image';
+        
         $container.append(
-          '<div class="gallery-item" style="cursor:default;">' +
-            '<div class="api-card-content" style="padding:1rem; min-height:120px;">' +
-              '<h6 style="margin:0 0 0.5rem; font-size:0.95rem;">' + escapeHtml(title) + '</h6>' +
-              '<p class="api-text" style="font-size:0.8rem; margin:0 0 0.25rem;">By: ' + escapeHtml(creator) + '</p>' +
-              '<p class="api-text" style="font-size:0.8rem; margin:0;">License: ' + escapeHtml(license) + '</p>' +
-              '<a href="' + foreignUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem;">View original →</a>' +
+          '<div class="gallery-item" style="display: flex; flex-direction: column;">' +
+            '<img src="' + escapeHtml(imgUrl) + '" alt="' + escapeHtml(title) + '" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px 6px 0 0;" onerror="this.src=\'https://via.placeholder.com/300x200?text=Image+Blocked\'" />' +
+            
+            '<div class="api-card-content" style="padding:1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">' +
+              '<div>' +
+                '<h6 style="margin:0 0 0.5rem; font-size:0.95rem; font-weight: bold;">' + escapeHtml(title) + '</h6>' +
+                '<p class="api-text" style="font-size:0.8rem; margin:0 0 0.25rem; color: #555;">By: ' + escapeHtml(creator) + '</p>' +
+                '<p class="api-text" style="font-size:0.8rem; margin:0 0 0.5rem; color: #555;">License: ' + escapeHtml(license) + '</p>' +
+              '</div>' +
+              '<a href="' + foreignUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem; font-weight: bold; color: var(--accent);">View original →</a>' +
             '</div>' +
           '</div>'
         );
@@ -382,7 +399,6 @@ $(document).ready(function () {
 
     fetchOpenverse('photography');
   }
-  
 
   // FAQ accordion (Moldir)
   $('.faq-question').on('click', function () {
@@ -401,16 +417,16 @@ $(document).ready(function () {
   var savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    $('#themeToggle').text('Light Theme');
+    $('#themeToggle').text('☀️');
   }
   $('#themeToggle').on('click', function () {
     $('body').toggleClass('dark-mode');
     if ($('body').hasClass('dark-mode')) {
       localStorage.setItem('theme', 'dark');
-      $(this).text('Light Theme');
+      $(this).text('☀️');
     } else {
       localStorage.setItem('theme', 'light');
-      $(this).text('Dark Theme');
+      $(this).text('🌙');
     }
   });
 });
