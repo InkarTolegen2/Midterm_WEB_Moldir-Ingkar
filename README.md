@@ -8,7 +8,7 @@ Built by Moldir & Ingkar for the Midterm, Endterm, and Final Projects.
 
 ## Link
 
-- **Deployed Website:** https://inkartolegen2.github.io/Term_WEB1/
+- [** link **](https://inkartolegen2.github.io/Midterm_WEB_Moldir-Ingkar/)
 
 ---
 
