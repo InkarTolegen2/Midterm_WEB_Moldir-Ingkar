@@ -326,11 +326,11 @@ $(document).ready(function () {
         var foreignUrl = img.foreign_landing_url || '#';
         $container.append(
           '<div class="gallery-item" style="cursor:default;">' +
-            '<div style="padding:1rem; background:#f3f4f6; min-height:120px;">' +
-              '<h6 style="margin:0 0 0.5rem; font-size:0.95rem; color:var(--primary);">' + escapeHtml(title) + '</h6>' +
-              '<p style="font-size:0.8rem; margin:0 0 0.25rem; color:#6b7280;">By: ' + escapeHtml(creator) + '</p>' +
-              '<p style="font-size:0.8rem; margin:0;">License: ' + escapeHtml(license) + '</p>' +
-              '<a href="' + foreignUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem; color:var(--accent);">View original →</a>' +
+            '<div class="api-card-content" style="padding:1rem; min-height:120px;">' +
+              '<h6 style="margin:0 0 0.5rem; font-size:0.95rem;">' + escapeHtml(title) + '</h6>' +
+              '<p class="api-text" style="font-size:0.8rem; margin:0 0 0.25rem;">By: ' + escapeHtml(creator) + '</p>' +
+              '<p class="api-text" style="font-size:0.8rem; margin:0;">License: ' + escapeHtml(license) + '</p>' +
+              '<a href="' + foreignUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem;">View original →</a>' +
             '</div>' +
           '</div>'
         );
@@ -388,5 +388,22 @@ $(document).ready(function () {
         icon.text('+');
       }
     });
+  });
+
+  // Theme toggle (Moldir)
+  var savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    $('#themeToggle').text('Light Theme');
+  }
+  $('#themeToggle').on('click', function () {
+    $('body').toggleClass('dark-mode');
+    if ($('body').hasClass('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+      $(this).text('Light Theme');
+    } else {
+      localStorage.setItem('theme', 'light');
+      $(this).text('Dark Theme');
+    }
   });
 });

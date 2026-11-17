@@ -543,6 +543,15 @@ a { text-decoration: none; color: inherit; }
     .stat h3 { font-size: 1.8rem; }
 }
 
+/* Final: API search results */
+.api-card-content {
+    background: #f3f4f6;
+    border-radius: 6px;
+}
+.api-card-content h6 { color: var(--primary); }
+.api-card-content .api-text { color: #6b7280; }
+.api-card-content a { color: var(--accent); }
+
 /* Final: FAQ (Moldir) */
 .faq-container { max-width: 800px; margin: 0 auto 3rem; padding: 0 2rem; }
 .faq-item { background: white; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 0.75rem; overflow: hidden; }
@@ -564,3 +573,68 @@ a { text-decoration: none; color: inherit; }
 .faq-question:hover { background: #f3f4f6; }
 .faq-icon { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
 .faq-answer { display: none; padding: 0 1.25rem 1rem; color: #4b5563; border-top: 1px solid #e5e7eb; padding-top: 0.75rem; }
+
+/* Dark mode (Moldir) */
+body.dark-mode {
+    --primary: #a78bfa;
+    --primary-soft: #c4b5fd;
+    --accent: #60a5fa;
+    --dark: #0f0a28;
+    --bg: #1a1528;
+    --text: #e5e7eb;
+}
+body.dark-mode .header,
+body.dark-mode .footer { background: #0f0a28; }
+body.dark-mode .contact-form,
+body.dark-mode .bio-wrapper,
+body.dark-mode .pricing-table { background: #2d2640; border-color: #3b3552; }
+body.dark-mode .pricing-table th { background: #4c1d95; }
+body.dark-mode .pricing-table td { border-color: #3b3552; color: #e5e7eb; }
+body.dark-mode .pricing-table tbody tr:nth-child(even) { background: #3b3552; }
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    outline: none;
+}
+body.dark-mode select option { background-color: #2d2640; color: #ffffff; }
+body.dark-mode .feedback.error { color: #fca5a5; }
+body.dark-mode .feedback.success { color: #86efac; }
+body.dark-mode .section-title p { color: #9ca3af; }
+body.dark-mode .about-intro-text,
+body.dark-mode .bio-text p { color: #d1d5db; }
+body.dark-mode .search-input { background: #2d2640; border-color: #4b5563; color: #e5e7eb; }
+body.dark-mode .filter-btn { color: #c4b5fd; border-color: #a78bfa; }
+body.dark-mode .filter-btn.active { background: #a78bfa; color: #0f0a28; }
+body.dark-mode .gallery-item .caption { background: rgba(15,10,40,0.85); }
+body.dark-mode .api-card-content { background: #2d2640; border: 1px solid #3b3552; }
+body.dark-mode .api-card-content h6 { color: var(--primary-soft); }
+body.dark-mode .api-card-content .api-text { color: #d1d5db; }
+body.dark-mode .api-card-content a { color: #60a5fa; }
+body.dark-mode .faq-item { background: #2d2640; border-color: #3b3552; }
+body.dark-mode .faq-question { color: var(--primary-soft); }
+body.dark-mode .faq-question:hover { background: #3b3552; }
+body.dark-mode .faq-answer { color: #d1d5db; border-color: #3b3552; }
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 7px;
+    width: 90px;
+    height: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: white;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.theme-toggle-btn:hover { border-color: var(--primary-soft); transform: scale(1.1); }
