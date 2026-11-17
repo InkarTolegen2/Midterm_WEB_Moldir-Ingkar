@@ -127,3 +127,13 @@ Endterm:
 - Displays image title, creator, license, and original link dynamically
 - Error handling for failed requests and empty results
 - Anonymous API access (no key required, rate limit: 1 req/sec)
+
+### Light/Dark Theme (Moldir)
+- Toggle button in navigation on every page
+- Theme saved in `localStorage` and persists across refresh
+- Consistent dark styles across all components
+
+### FAQ Accordion (Moldir)
+- `faq.html` with 5 photography-related questions
+- jQuery `.slideToggle(300)` for smooth open/close animation
+- `+ / -` indicator toggles with answer visibility
