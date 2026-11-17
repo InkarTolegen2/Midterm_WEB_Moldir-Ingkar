@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   // Endterm
   // 2.1 Form validion (Moldir)
-  if ($('#registerForm').length) {
+    if ($('#registerForm').length) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -86,7 +86,14 @@ $(document).ready(function () {
       const $alert = $('#formAlert');
 
       if (ok) {
-        $alert.html('<div class="alert alert-success">Registration successful! Welcome.</div>');
+        var userData = {
+          name: $('#regName').val().trim(),
+          email: $('#regEmail').val().trim(),
+          password: $('#regPassword').val()
+        };
+        localStorage.setItem('registeredUser', JSON.stringify(userData));
+
+        $alert.html('<div class="alert alert-success">Registration successful! You can now <a href="signin.html">Sign In</a>.</div>');
         this.reset();
         $('#strengthBar').attr('class', 'password-meter-bar').width('0%');
         $('.feedback').text('').removeClass('success error');
