@@ -542,3 +542,25 @@ a { text-decoration: none; color: inherit; }
     .stats-bar { grid-template-columns: 1fr; }
     .stat h3 { font-size: 1.8rem; }
 }
+
+/* Final: FAQ (Moldir) */
+.faq-container { max-width: 800px; margin: 0 auto 3rem; padding: 0 2rem; }
+.faq-item { background: white; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 0.75rem; overflow: hidden; }
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    background: transparent;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faq-question:hover { background: #f3f4f6; }
+.faq-icon { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+.faq-answer { display: none; padding: 0 1.25rem 1rem; color: #4b5563; border-top: 1px solid #e5e7eb; padding-top: 0.75rem; }
