@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+  // Endterm
   // 2.1 Form validion (Moldir)
   if ($('#registerForm').length) {
 
@@ -303,6 +304,7 @@ $(document).ready(function () {
     });
   }
 
+  // Final
   // Openverse API search (Ingkar)
   if ($('#apiResults').length) {
     var OPENVERSE_BASE = 'https://api.openverse.org/v1/images/';
@@ -374,4 +376,17 @@ $(document).ready(function () {
     fetchOpenverse('photography');
   }
   
+
+  // FAQ accordion (Moldir)
+  $('.faq-question').on('click', function () {
+    var answer = $(this).next('.faq-answer');
+    var icon = $(this).find('.faq-icon');
+    answer.slideToggle(300, function() {
+      if (answer.is(':visible')) {
+        icon.text('-');
+      } else {
+        icon.text('+');
+      }
+    });
+  });
 });
