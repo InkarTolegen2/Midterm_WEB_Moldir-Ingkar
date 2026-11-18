@@ -108,11 +108,13 @@ All code was written, tested, and integrated by the group members. AI was not us
 
 ## 8. Screenshots
 
-1. Home page (light theme)
-2. Home page (dark theme)
-3. FAQ page with an answer open
-4. Registration form showing the password strength meter
-5. Sign-in form
-6. Signed-in view after sign-in
-7. Gallery page with API results
-8. Portfolio page with the lightbox open
+All screenshots are stored in [`docs/screenshots/`](docs/screenshots/).
+
+1. [Home page (light theme)](docscreenshots/1-home-light.png)
+2. [Home page (dark theme)](docscreenshots/2-home-dark.png)
+3. [FAQ page with an answer open](docscreenshots/3-faq-open.png)
+4. [Registration form with validations](docscreenshots/4-register-validation.png)
+5. [Sign-in form](docscreenshots/5-signin.png)
+6. [Signed-in view after sign-in](docscreenshots/6-signed-in.png)
+7. [Gallery page with API results](docscreenshots/7-gallery-api.png)
+8. [Gallery page with "No images found" message](docscreenshots/8-gallery-not-found.png)
