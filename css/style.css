@@ -545,8 +545,10 @@ a { text-decoration: none; color: inherit; }
 
 /* Final: API search results */
 .api-card-content {
-    background: #f3f4f6;
-    border-radius: 6px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
 }
 .api-card-content h6 { color: var(--primary); }
 .api-card-content .api-text { color: #6b7280; }
@@ -613,14 +615,34 @@ body.dark-mode .feedback.success { color: #86efac; }
 body.dark-mode .section-title p { color: #9ca3af; }
 body.dark-mode .about-intro-text,
 body.dark-mode .bio-text p { color: #d1d5db; }
+body.dark-mode .about-hero { background: #2d2640; border-bottom: 1px solid #3b3552; }
+body.dark-mode .about-hero h1 { color: var(--primary-soft); }
+body.dark-mode .about-hero p { color: #d1d5db; }
+body.dark-mode .pricing-table .btn-edit,
+body.dark-mode .pricing-table .btn-delete {
+    background-color: transparent;
+    border: 1px solid;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+body.dark-mode .pricing-table .btn-edit { color: #93c5fd; border-color: #3b82f6; }
+body.dark-mode .pricing-table .btn-edit:hover { background-color: #3b82f6; color: #fff; }
+body.dark-mode .pricing-table .btn-delete { color: #fca5a5; border-color: #ef4444; }
+body.dark-mode .pricing-table .btn-delete:hover { background-color: #ef4444; color: #fff; }
 body.dark-mode .search-input { background: #2d2640; border-color: #4b5563; color: #e5e7eb; }
 body.dark-mode .filter-btn { color: #c4b5fd; border-color: #a78bfa; }
 body.dark-mode .filter-btn.active { background: #a78bfa; color: #0f0a28; }
 body.dark-mode .gallery-item .caption { background: rgba(15,10,40,0.85); }
 body.dark-mode .api-card-content { background: #2d2640; border: 1px solid #3b3552; }
 body.dark-mode .api-card-content h6 { color: var(--primary-soft); }
-body.dark-mode .api-card-content .api-text { color: #d1d5db; }
+body.dark-mode .api-text { color: #cbd5e1 !important; }
 body.dark-mode .api-card-content a { color: #60a5fa; }
+body.dark-mode .text-muted,
+body.dark-mode #apiStatus,
+body.dark-mode #noResults { color: #9ca3af !important; }
 body.dark-mode .faq-item { background: #2d2640; border-color: #3b3552; }
 body.dark-mode .faq-question { color: var(--primary-soft); }
 body.dark-mode .faq-question:hover { background: #3b3552; }
@@ -638,17 +660,3 @@ body.dark-mode .faq-answer { color: #d1d5db; border-color: #3b3552; }
     transition: border-color 0.2s, transform 0.2s;
 }
 .theme-toggle-btn:hover { border-color: var(--primary-soft); transform: scale(1.1); }
-
-.api-card-content {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
-}
-body.dark-mode .api-card-content {
-    background: #2d2640;
-    border-color: #3b3552;
-}
-body.dark-mode .api-text {
-    color: #cbd5e1 !important;
-}

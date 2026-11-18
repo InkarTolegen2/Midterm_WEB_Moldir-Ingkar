@@ -417,16 +417,16 @@ $(document).ready(function () {
   var savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    $('#themeToggle').text('☀️');
+    $('#themeToggle').text('Light Theme');
   }
   $('#themeToggle').on('click', function () {
     $('body').toggleClass('dark-mode');
     if ($('body').hasClass('dark-mode')) {
       localStorage.setItem('theme', 'dark');
-      $(this).text('☀️');
+      $(this).text('Light Theme');
     } else {
       localStorage.setItem('theme', 'light');
-      $(this).text('🌙');
+      $(this).text('Dark Theme');
     }
   });
 });
